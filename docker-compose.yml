@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  data-science:
+    container_name: data-science
+    build: 
+      context : ./
+      dockerfile: docker/back-end/Dockerfile
+      args:
+        HTTP_PROXY: ${HTTP_PROXY}
+        HTTPS_PROXY: ${HTTPS_PROXY}
+    env_file: .env
+    tty: true
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+      - "8001:8001"
